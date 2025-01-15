@@ -1,0 +1,72 @@
+btn-primary">Найти</button> 
+        </form> 
+ 
+        <!-- Пагинация курсов --> 
+        <nav aria-label="Page navigation example"> 
+            <ul class="pagination justify-content-center"> 
+                <li class="page-item"><a class="page-link" href="#">1</a></li> 
+                <li class="page-item"><a class="page-link" href="#">2</a></li> 
+                <li class="page-item"><a class="page-link" href="#">3</a></li> 
+            </ul> 
+        </nav> 
+ 
+        <!-- Списки репетиторов --> 
+        <section id="tutors" class="my-5"> 
+            <h2>Наши репетиторы</h2> 
+            <!-- Динамически добавляемая информация о репетиторах --> 
+            <!-- Пример статического блока --> 
+            <ul class="list-group"> 
+                <li class="list-group-item">Иван Иванов - 5 лет опыта, квалификация: магистр филологии.</li> 
+                <li class="list-group-item">Мария Петрова - 3 года опыта, квалификация: бакалавр лингвистики.</li> 
+                <!-- Дополнительные репетиторы могут быть добавлены динамически --> 
+            </ul> 
+ 
+            <!-- Поиск репетиторов --> 
+            <form id='tutor-search' class='my-4'> 
+                <select name='qualification' id='qualification' class='form-control'> 
+                    <option value=''>Выберите квалификацию</option> 
+                    <!-- Опции квалификаций --> 
+                    <option value='bachelor'>Бакалавр</option> 
+                    <option value='master'>Магистр</option> 
+                </select> 
+ 
+                <!-- Форма для фильтрации по опыту --> 
+                <input type='number' name='experience' placeholder='Количество лет' min='0' max='50' step='1' id='experience' /> 
+                 
+                <!-- Кнопка для поиска --> 
+                <button type='submit' id='search-button' name='search-button' value='Search'>Найти репетиторов</button> 
+ 
+            </form> 
+ 
+            <!-- Кнопка формы заказа --> 
+            <!-- Кнопка, открывающая модальное окно с формой запроса --> 
+            <!-- Модальное окно можно реализовать с помощью Bootstrap модальных окон --> 
+            <!-- Пример кнопки: --> 
+            <button type='button' data-toggle='modal' data-target='#orderModal' class='btn btn-success'>Заказать сеанс репетиторства</button> 
+ 
+        </section> 
+ 
+    </section> 
+ 
+    <!-- Футер --> 
+    <footer class='bg-light text-center p-4'> 
+        Контактная информация: info@language-school.com | Телефон: +7 (123) 456-78-90 
+        | Социальные сети:  
+        Facebook | Instagram | VK 
+    </footer> 
+ 
+    <!-- Подключение скриптов Bootstrap и jQuery --> 
+    <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js'></script> 
+    <script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js'></script> 
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script> 
+ 
+</body> 
+ 
+<!-- Модальное окно для заказа сеанса репетиторства --> 
+<div id='orderModal' tabindex='-1' role='dialog'> 
+  ... 
+  <!-- Содержимое модального окна можно добавить здесь --> 
+  ... 
+</div> 
+ 
+</html>
