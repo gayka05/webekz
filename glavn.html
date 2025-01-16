@@ -25,7 +25,92 @@
         </div>
     </header>
 
-    <!-- Остальная часть страницы будет здесь -->
+    <!-- Область уведомлений -->
+    <div class="alert alert-info text-center" role="alert">
+        Внимание! Новые курсы начинаются с 1 февраля!
+    </div>
+
+    <!-- Блок описания языковой школы -->
+    <section id="about" class="container my-5">
+        <h2>О нашей школе</h2>
+        <p>Мы предлагаем качественное обучение русскому языку для всех уровней. Наша миссия - помочь каждому студенту достичь своих целей в изучении языка.</p>
+    </section>
+
+    <!-- Преимущества изучения русского языка -->
+    <section class="container my-5">
+        <h2>Преимущества изучения русского языка</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Культура</h3>
+                <p>Изучение русского языка открывает доступ к богатой культуре и литературе.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Работа</h3>
+                <p>Знание русского языка может повысить ваши карьерные возможности.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Путешествия</h3>
+                <p>Умение говорить по-русски значительно улучшает путешествия по России и странам СНГ.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Предлагаемые курсы -->
+    <section id="courses" class="container my-5">
+        <h2>Предлагаемые курсы</h2>
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Курс для начинающих</h5>
+                    <p class="card-text">Основы языка для начинающих.</p>
+                    <a href="#" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Средний уровень</h5>
+                    <p class="card-text">Углубленное изучение грамматики и разговорной речи.</p>
+                    <a href="#" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Продвинутый уровень</h5>
+                    <p class="card-text">Совершенствование навыков общения и письма.</p>
+                    <a href="#" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Форма поиска -->
+        <form class="form-inline my-4 justify-content-center">
+            <input type="text" class="form-control mr-2" placeholder="Поиск курсов...">
+            <select class="form-control mr-2">
+                <option value="">Выберите уровень</option>
+                <option value="beginner">Начальный</option>
+                <option value="intermediate">Средний</option>
+                <option value="advanced">Продвинутый</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Найти</button>
+        </form>
+
+        <!-- Пагинация курсов -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+            </ul>
+        </nav>
+
+    </section>
+
+    <!-- Футер -->
+    <footer class='bg-light text-center p-4'>
+        Контактная информация: info@language-school.com | Телефон: +7 (123) 456-78-90
+        | Социальные сети: 
+        [Facebook](#) | [Instagram](#) | [VK](#)
+    </footer>
 
     <!-- Подключение скриптов Bootstrap -->
     <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js'></script>
