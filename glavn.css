@@ -6,10 +6,10 @@ header {
     background-color: #f8f9fa; /* Цвет фона шапки */
 }
 
-.nav-link {
-    color: #007bff; /* Цвет ссылок */
+footer {
+    background-color: #f8f9fa;
 }
 
-.nav-link:hover {
-    text-decoration: underline; /* Подчеркивание при наведении */
+.card-deck .card {
+    margin-bottom: 20px;
 }
