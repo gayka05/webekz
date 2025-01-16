@@ -1,15 +1,101 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Белый фон страницы */
+    margin: 0; /* Убираем отступы по умолчанию */
+    padding: 0; /* Убираем отступы по умолчанию */
 }
 
 header {
-    background-color: #f8f9fa; /* Цвет фона шапки */
+    background-color: #dc3545; /* Красный цвет шапки */
+    padding: 20px 0; /* Добавляем отступы для шапки */
 }
 
 footer {
-    background-color: #f8f9fa;
+    background-color: #dc3545; /* Красный цвет футера */
+    color: white; /* Цвет текста футера */
+    padding: 20px 0; /* Добавляем отступы для футера */
+}
+
+h2, h3 {
+    color: #dc3545; /* Красный цвет заголовков */
+}
+
+h2 {
+    margin-bottom: 20px; /* Отступ снизу для заголовков */
 }
 
 .card-deck .card {
     margin-bottom: 20px;
+}
+
+.card {
+    background-color: #ffffff; /* Белый фон карточек */
+    border: 1px solid #dc3545; /* Красная рамка карточек */
+    transition: transform 0.2s, box-shadow 0.2s; /* Плавный эффект при наведении */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Увеличение карточки при наведении */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Тень при наведении */
+}
+
+.card-title {
+    color: #dc3545; /* Красный цвет заголовка карточки */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Красный цвет кнопок */
+    border: none; /* Убираем рамку у кнопок */
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Темно-красный при наведении */
+}
+
+/* Стили для списка репетиторов */
+.list-group-item {
+    background-color: #ffffff; /* Белый фон для элементов списка */
+    border: 1px solid #dc3545; /* Красная рамка для элементов списка */
+    margin-bottom: 10px; /* Отступ между элементами списка */
+    transition: background-color 0.3s; /* Плавный переход фона при наведении */
+}
+
+.list-group-item:hover {
+    background-color: #f8d7da; /* Светло-красный фон при наведении на элемент списка */
+}
+
+/* Стили для модального окна */
+.modal-content {
+    border-radius: 8px; /* Закругленные углы модального окна */
+}
+
+.modal-header {
+    border-bottom: none; /* Убираем рамку снизу модального заголовка */
+}
+
+.modal-footer {
+    border-top: none; /* Убираем рамку сверху модального футера */
+}
+
+/* Стили для формы в модальном окне */
+.form-control {
+    border-radius: 4px; /* Закругленные углы полей ввода формы */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Красный цвет для кнопок */
+    border: none; /* Убираем рамку у кнопок */
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Темно-красный при наведении */
+}
+
+/* Optional: Style for h5 if you want to customize further */
+.modal-header .modal-title {
+    color: #dc3545; /* Red color for modal title */
+}
+
+.text-danger {
+    color: #dc3545; /* Красный цвет для текста */
 }
