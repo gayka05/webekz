@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"> <!-- Устанавливаем кодировку документа -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Адаптивный дизайн для мобильных устройств -->
+    <title>Language schools</title> <!-- Заголовок страницы, отображаемый в вкладке браузера -->
+    <link rel="stylesheet" href="glavn.css"> <!-- Подключение внешнего CSS файла для стилей -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> <!-- Подключение Bootstrap для стилизации -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> <!-- Подключение JavaScript Bootstrap -->
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="bg-danger text-white p-3"> <!-- Красная шапка с белым текстом -->
+        <div class="container d-flex justify-content-between align-items-center"> <!-- Контейнер для выравнивания содержимого -->
+            <h1 class="h2">Language schools</h1> <!-- Заголовок сайта -->
+            <img src="logo.png" alt="Логотип" width="100">  <!-- Логотип школы -->
+            <nav> <!-- Навигационное меню -->
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="#courses">Course</a></li> <!-- Ссылка на курсы -->
+                    <li class="nav-item"><a class="nav-link text-white" href="#about">About us</a></li> <!-- Ссылка о школе -->
+                    <li class="nav-item"><a class="nav-link text-white" href="#contact">Contacts</a></li> <!-- Ссылка на контакты -->
+                    <li class="nav-item"><a class="nav-link text-white" href="LK.html">User account</a></li> <!-- Ссылка на личный кабинет -->
+                    <li class="nav-item"><a class="nav-link text-white" href="map.html">Map</a></li> <!-- Ссылка на карту -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Область уведомлений -->
+    <div class="alert alert-warning text-center" role="alert"> <!-- Уведомление о курсах -->
+        Attention! New courses start on February 1st!
+    </div>
+
+    <!-- Блок описания языковой школы -->
+    <section id="about" class="container my-5"> <!-- Раздел о школе с отступами сверху и снизу -->
+        <h2>About our school</h2> <!-- Заголовок раздела -->
+        <p>We offer high-quality Russian language training for all levels. Our mission is to help every student achieve their goals in language learning.</p> <!-- Описание школы -->
+    </section>
+
+    <!-- Преимущества изучения русского языка -->
+    <section class="container my-5"> 
+        <h2>Advantages of learning Russian</h2> 
+        <div class="row"> <!-- Ряд для размещения преимуществ в колонках -->
+            <div class="col-md-4">
+                <h3>Culture</h3>
+                <p>Learning Russian opens up access to a rich culture and literature.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Work</h3>
+                <p>Knowledge of the Russian language can enhance your career opportunities.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Journeys</h3>
+                <p>The ability to speak Russian significantly improves travel in Russia and the CIS countries.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Фильтрация курсов -->
+    <div class="container">
+        <h2>Search Courses</h2> 
+        <form class="row"> 
+            <div class="col-md-8">
+                <input type="text" id="course-name" class="form-control" placeholder="Input course name"> <!-- Поле ввода для названия курса -->
+            </div>
+            <div class="col-md-3">
+                <select id="course-level" class="form-select"> <!-- Выпадающий список для выбора уровня курса -->
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+            </div>
+        </form>
+        <div class="mt-4">
+            <table class="table table-bordered" id="courses-table"> <!-- Таблица для отображения курсов с границами -->
+                <thead>
+                    <tr>
+                        <th>Name of Course</th> <!-- Заголовок колонки с названием курса -->
+                        <th>Level</th> <!-- Заголовок колонки с уровнем курса -->
+                        <th>Information</th> <!-- Заголовок колонки с информацией о курсе -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Загрузка данных с API будет происходить здесь --> 
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Доступные курсы -->
+    <div id="courses" class="container my-5"> 
+        <h2>Available Courses</h2> 
+        <div id="courses-container" class="row"></div>  <!-- Контейнер для отображения доступных курсов --> 
+        <!-- Пагинация --> 
+        <nav id="pagination" class="mt-4"> 
+            <ul class="pagination justify-content-center"></ul>  <!-- Пагинация будет загружаться здесь --> 
+        </nav> 
+    </div>
+
+    <!-- Модальное окно с дополнительной информацией о курсе --> 
+    <div class="modal fade" id="courseModal" tabindex="-1" aria-labelledby="courseModalLabel" aria-hidden="true"> 
+        <div class="modal-dialog"> 
+            <div class="modal-content"> 
+                <div class="modal-header"> 
+                    <h5 class="modal-title" id="courseTitle"></h5>  <!-- Заголовок модального окна, название курса --> 
+                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>  <!-- Кнопка закрытия модального окна --> 
+                </div> 
+                <div class='modal-body' id='courseModalBody'>  <!-- Тело модального окна, где будет отображаться информация о курсе --> 
+                    <p id='courseDescription'></p>  <!-- Описание курса --> 
+                    <p><strong>Teacher:</strong> <span id='courseTeacher'></span></p>  <!-- Имя преподавателя --> 
+                    <p><strong>Level:</strong> <span id='courseLevel'></span></p>  <!-- Уровень курса --> 
+                    <p><strong>Duration:</strong> <span id='courseDuration'></span> weeks</p><!-- Продолжительность курса в неделях --> 
+                    <p><strong>Hours per week:</strong> <span id='courseHour'></span></p><!-- Часы в неделю --> 
+                    <p><strong>Fee per hour:</strong> <span id='courseFee'></span></p><!-- Стоимость за час обучения --> 
+                </div> 
+            </div> 
+        </div> 
+    </div>
+
+  <!-- Модальное окно с дополнительной информацией о преподавателе -->
+<div class="modal fade" id="tutorModal" tabindex="-1" aria-labelledby="tutorModalLabel" aria-hidden="true"> 
+    <div class="modal-dialog"> 
+        <div class="modal-content"> 
+            <div class="modal-header"> 
+                <h5 class="modal-title" id="tutorTitle"></h5> <!-- Заголовок модального окна с именем преподавателя -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- Кнопка закрытия модального окна -->
+            </div> 
+            <div class="modal-body" id="tutorModalBody">  
+                <p><strong>Teacher:</strong> <span id="tutorName"></span></p> <!-- Имя преподавателя -->
+                <p><strong>Work Experience:</strong> <span id="tutorExperience"></span></p> <!-- Опыт работы преподавателя -->
+                <p><strong>Languages spoken:</strong> <span id="tutorSpoken"></span></p> <!-- Языки, на которых говорит преподаватель -->
+                <p><strong>Languages offered:</strong> <span id="tutorOffered"></span></p> <!-- Языки, которые предлагает преподаватель -->
+                <p><strong>Language level:</strong> <span id="tutorLevel"></span></p> <!-- Уровень языка, который преподает преподаватель -->
+                <p><strong>Price per hour:</strong> <span id="tutorPrice"></span></p> <!-- Стоимость занятий за час -->
+            </div> 
+        </div> 
+    </div> 
+</div>
+
+<!-- Фильтрация тьюторов -->
+<div class="container">
+    <h2>Search Tutors</h2>
+    <form class="row" id="search-tutors-form"> <!-- Форма для поиска тьюторов -->
+        <div class="col-md-4">
+            <label for="tutor-name" class="form-label">Tutor Name</label>
+            <input type="text" id="tutor-name" class="form-control" placeholder="Search by tutor name"> <!-- Поле ввода для имени тьютора -->
+        </div>
+        <div class="col-md-4">
+            <label for="language-level" class="form-label">Language Level</label>
+            <select id="language-level" class="form-select"> <!-- Выпадающий список для выбора уровня языка -->
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="language-offered" class="form-label">Language</label>
+            <select id="language-offered" class="form-select"> <!-- Выпадающий список для выбора языка, который предлагает тьютор -->
+                <option value="">All Languages</option>
+                <option value="Russian">Russian</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+                <option value="Italian">Italian</option>
+                <option value="Japanese">Japanese</option>
+                <option value="English">English</option>
+                <option value="German">German</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="tutor-experience" class="form-label">Work Experience</label>
+            <input type="text" id="tutor-experience" class="form-control" placeholder="input a number"> <!-- Поле ввода для опыта работы тьютора -->
+        </div>
+    </form>
+
+    <!-- Таблица тьюторов -->
+    <div class="mt-4">
+        <table class="table table-bordered" id="tutors-table"> <!-- Таблица для отображения информации о тьюторах -->
+            <thead>
+                <tr>
+                    <th>Name</th> <!-- Заголовок колонки с именем тьютора -->
+                    <th>Level</th> <!-- Заголовок колонки с уровнем языка -->
+                    <th>Languages Spoken</th> <!-- Заголовок колонки с языками, на которых говорит тьютор -->
+                    <th>Experience</th> <!-- Заголовок колонки с опытом работы тьютора -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Загрузка данных с API будет происходить здесь --> 
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Форма заявки на курс (скрыта по умолчанию) -->
+<div id="courseRequestForm" style="display: none;">
+    <h3>Course Application form</h3>
+    <form id="courseForm">
+        <div>
+            <label for="courseName">Name of course:</label>
+            <input type="text" id="courseName" value="Not selected" readonly> <!-- Нерегулируемое поле для названия курса -->
+        </div>
+        <button type="submit">Submit an application for a course</button> <!-- Кнопка отправки заявки на курс -->
+    </form>
+</div>
+
+<!-- Кнопка для открытия модального окна запроса на занятие -->  
+<div class="container my-5 text-center">  
+    <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#requestTutorModal'>  
+        Request a Tutoring Session   
+    </button>  
+</div>
+
+<!-- Модальное окно для запроса занятия -->  
+<div class='modal fade' id='requestTutorModal' tabindex='-1' aria-labelledby='requestTutorModalLabel' aria-hidden='true'>  
+    <div class='modal-dialog'>  
+        <div class='modal-content'>  
+            <div class='modal-header'>  
+                <h5 class='modal-title' id='requestTutorModalLabel'>Request a tutoring session</h5>  
+                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>  
+            </div>  
+            <div class='modal-body'>  
+                <!-- Форма для запроса занятия -->  
+                <form id='tutorRequestForm'>  
+                    <div class='mb-3'>  
+                        <label for='studentName' class='form-label'>Your name</label>  
+                        <input type='text' class='form-control' id='studentName' placeholder='Введите ваше имя' required>  <!-- Поле ввода для имени студента --> 
+                    </div>  
+                    <div class='mb-3'>  
+                        <label for='studentEmail' class='form-label'>Your email</label>  
+                        <input type='email' class='form-control' id='studentEmail' placeholder='Введите ваш email' required>  <!-- Поле ввода для email студента --> 
+                    </div>  
+                    <div class='mb-3'>  
+                        <label for='languageLevel' class='form-label'>Language level</label>  
+                        <select class='form-select' id='languageLevel' required>  <!-- Выпадающий список для выбора уровня языка студента --> 
+                            <option value='' disabled selected>Select level</option>  <!-- Заголовок выпадающего списка --> 
+                            <option value='beginner'>Beginner</option>  <!-- Уровень начинающего --> 
+                            <option value='intermediate'>Intermediate</option><!-- Уровень среднего --> 
+                            <option value='advanced'>Advanced</option><!-- Уровень продвинутого --> 
+                        </select>  
+                    </div>  
+                    <!-- Поле для дополнительных пожеланий или вопросов --> 
+                    <div class='mb-3'>  
+                        <label for='message' class='form-label'>Additional information</label>  
+                        <textarea class='form-control' id='message' rows='4' placeholder='Напишите ваши пожелания или вопросы'></textarea><!-- Текстовое поле для сообщения --> 
+                    </div>  
+                    <!-- Кнопка отправки запроса на занятие --> 
+                    <button type='submit' class='btn btn-danger'>Send request</button>  
+                </form>  
+            </div>  
+        </div>  
+    </div>  
+</div>
+     <!-- Футер -->
+    <footer id="contact" class='bg-danger text-white text-center p-4'>
+        Contact information:<br> 
+        Phone: +7 (123) 456-78-90 | 
+        Email:<a href="mailto:info@learnrussian.com" class='text-white'> info@learnrussian.com</a>
+    </footer>
+     <script src="cours.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+    /* Карта */
+    #map {
+        width: 100%;
+        height: 500px;
+        border: 2px solid #ff0000; /* Красная рамка вокруг карты */
+    }
+
+    /* Фильтры */
+    #filters {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #ff0000; /* Красный фон */
+        color: #ffffff; /* Белый текст */
+        border-radius: 5px;
+    }
+
+    #filters label {
+        font-weight: bold;
+        color: #ffffff; /* Белый текст для метки */
+    }
+
+    #filters select {
+        padding: 5px;
+        border: 1px solid #ff0000;
+        border-radius: 5px;
+    }
+
+    /* Список информации о местоположениях */
+    #info {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #ffffff; /* Белый фон */
+        border: 2px solid #ff0000; /* Красная рамка */
+        border-radius: 5px;
+    }
+
+    .resource-item {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #ffe6e6; /* Светло-красный фон */
+        border: 1px solid #ff0000; /* Красная рамка */
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .resource-item:hover {
+        background-color: #fae187; /* Более насыщенный красный при наведении */
+    }
+
+    .highlight {
+        background-color: #ffb700; /* Выделение элемента светло-красным цветом */
+    }
+
+    /* Заголовки и текст внутри элементов списка */
+    .resource-item h4 {
+        color: #ff0000; /* Красный заголовок */
+        margin-bottom: 5px;
+    }
+
+    .resource-item p {
+        color: #333333; /* Темно-серый текст */
+    }

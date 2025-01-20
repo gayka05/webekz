@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Карта Яндекса с поиском и описаниями</title>
+    <link rel="stylesheet" href="map.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=9adfcdac-0400-4c79-9b91-9edb7afad785&lang=ru_RU" type="text/javascript"></script>
+    <style>
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+        #filters {
+            margin-bottom: 10px;
+        }
+        #info {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .resource-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .highlight {
+            background-color: #e0f7fa; /* Цвет выделения */
+        }
+    </style>
+    <script>
+        var myMap;
+        var resources = [
+           {
+                name: "Языковой клуб Keep in touch",
+                address: "улица Академика Доллежаля. 27",
+                hours: "Пн-Сб: 9:00 - 20:00",
+                contact: "+7 (926) 995-54-77",
+                description: "Курсы для всех уровней.",
+                category: "Языковой клуб",
+                coords: [55.416228, 37.483113]
+            },
+            {
+                name: "Издательство Русский язык. Курсы",
+                address: "Новая Басманная улица, 19с2",
+                hours: "Пн-Сб: 10:00 - 17:00",
+                contact: "+7 (499) 261-54-37",
+                description: "Курсы для всех уровней.",
+                category: "Курсы русского языка",
+                coords: [55.770111, 37.659770]
+            },
+            {
+                name: "Читальный зал библиотеки Дома русского зарубежья",
+                address: "Нижняя Радищевская ул., 2, Москва",
+                hours: "Пн-Сб: 12:00 - 19:00",
+                contact: "+7 (495) 137-84-02",
+                description: "Курсы для всех уровней.",
+                category: "Библиотеки с русскоязычными ресурсами",
+                coords: [55.742881, 37.651662]
+            },
+            {
+                name: "Культурный центр имени И. М. Астахова",
+                address: "Люблинская улица, 149",
+                hours: "Пн-Сб: 08:00 - 22:00",
+                contact: "+7 (495) 664-81-93",
+                description: "Курсы для всех уровней.",
+                category: "Культурные центры",
+                coords: [55.663531, 37.742882]
+            },
+            {
+                name: "Кафе БирХаус",
+                address: "Бакунинская улица, 7с5",
+                hours: "Пн-Сб: 12:00 - 23:00",
+                contact: "+7 (499) 267-03-23",
+                description: "Курсы для всех уровней.",
+                category: "Кафе языкового обмена",
+                coords: [55.773889, 37.680185]
+            }
+        ];
+
+        function init() {
+            // Создание карты
+            myMap = new ymaps.Map("map", {
+                center: [55.76, 37.64],
+                zoom: 10,
+                controls: ['searchControl'] // Добавляем элемент управления "Поиск по карте"
+            });
+
+            // Настройка поиска
+            var searchControl = myMap.controls.get('searchControl');
+            searchControl.options.set({
+                provider: 'yandex#search', // Поиск по топонимам и организациям
+                placeholderContent: 'Введите запрос (например, языковой клуб)'
+            });
+
+            // Добавление меток на карту
+            addSamplePlacemarks();
+
+            // Фильтры для поиска
+            document.getElementById('filters').addEventListener('change', function (e) {
+                var filterValue = e.target.value;
+                
+                filterResources(filterValue); // Фильтруем ресурсы по выбранной категории
+            });
+        }
+
+        function addSamplePlacemarks() {
+            resources.forEach(function(resource) {
+                var placemark = new ymaps.Placemark(resource.coords, {
+                    balloonContentHeader:
+                        resource.name,
+                    balloonContentBody:
+                        `<strong>Адрес:</strong> ${resource.address}<br>
+                         <strong>Часы работы:</strong> ${resource.hours}<br>
+                         <strong>Контакт:</strong> ${resource.contact}<br>
+                         <strong>Описание:</strong> ${resource.description}`
+                    
+                    });
+
+                    placemark.events.add('click', function () {
+                        highlightResource(resource.name);
+                        myMap.setCenter(resource.coords, 15); // Центрируем карту на выбранном местоположении
+                    });
+
+                    myMap.geoObjects.add(placemark);
+                    
+                    // Добавляем элемент списка с информацией о ресурсе
+                    addResourceToList(resource);
+            });
+        }
+
+        function addResourceToList(resource) {
+            var resourceList = document.getElementById('info');
+            var resourceItem = document.createElement('div');
+            
+            resourceItem.className = 'resource-item';
+            resourceItem.innerHTML = `
+                <h4>${resource.name}</h4>
+                <p><strong>Адрес:</strong> ${resource.address}</p>
+                <p><strong>Часы работы:</strong> ${resource.hours}</p>
+                <p><strong>Контакт:</strong> ${resource.contact}</p>
+                <p><strong>Описание:</strong> ${resource.description}</p>
+            `;
+
+            resourceItem.onclick = function() {
+                highlightResource(resource.name);
+                myMap.setCenter(resource.coords, 15); // Центрируем карту на выбранном местоположении
+            };
+
+            resourceList.appendChild(resourceItem);
+        }
+
+        function highlightResource(name) {
+            var items = document.querySelectorAll('.resource-item');
+            
+            items.forEach(function(item) {
+                item.classList.remove('highlight'); // Убираем выделение со всех элементов
+                if (item.querySelector('h4').innerText === name) {
+                    item.classList.add('highlight'); // Выделяем текущий элемент
+                    myMap.setCenter(resources.find(r => r.name === name).coords, 15); // Центрируем карту на выбранном местоположении
+                    myMap.geoObjects.each(function(placemark) {
+                        if (placemark.properties.get('balloonContentHeader') === name) {
+                            placemark.balloon.open(); // Открываем баллон с информацией о метке
+                        } else {
+                            placemark.balloon.close(); // Закрываем баллон для остальных меток
+                        }
+                    });
+                }
+            });
+        }
+
+        function filterResources(category) {
+            myMap.geoObjects.removeAll(); // Удаляем все метки с карты
+            document.getElementById('info').innerHTML = ''; // Очищаем список ресурсов
+
+            resources.forEach(function(resource) {
+               if (!category || resource.category === category) { // Проверяем категорию
+                    addSamplePlacemarks(); // Добавляем метки на карту и в список
+               }
+           });
+       }
+
+        ymaps.ready(init);
+    </script>
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="bg-danger text-white p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="h2">Language schools</h1>
+            <img src="logo.png" alt="Логотип" width="100"> 
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="#contact">Contacts</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="LK.html">User account</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="map.html">Map</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="glavn.html">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Информация о местоположениях -->
+    <div id="info"></div>
+
+    <!-- Карта -->
+    <div id="map"></div>
+
+    <!-- Футер -->
+    <footer id="contact" class='bg-danger text-white text-center p-4'>
+        Contact information:<br> 
+        Phone: +7 (123) 456-78-90 | 
+        Email:<a href="mailto:info@learnrussian.com" class='text-white'> info@learnrussian.com</a>
+    </footer>
+
+</body>
+</html>
